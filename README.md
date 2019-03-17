@@ -39,8 +39,11 @@ ALGORITHM METHODOLOGY:
   I just used this for clarity... The stack could be {3,1,2,6,4,5,7,9,8} too) then we put 6, 7, 8, and 9 into Stack B.
 
 2)Sort A while sorting B. Then finish sorting for B if still unsorted.
+  Stack A will be sorted in ascending order, while Stack B will be sorted in descending order.
   My individual sorts will sort 250 numbers in around 2900 steps. Using this individual
   sort on Stack A alone (without transferring anything to stack B) will not pass the requirements, which is to sort
   500 numbers in around 5300 steps. However, I am sorting stack A and while sorting stack B with the same algorithm
   template. Therefore when Stack A is finished, it is possible stack B will be finished sorting too. Sorting both stacks
   with the same Stack is possible because of instructions SS, RR, and RRR.
+
+3)use PA until stack B is empty and there you have it - a sorting algorithm designed just for this particular project :)
