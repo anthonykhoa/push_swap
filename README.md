@@ -32,7 +32,7 @@ RRB : reverse rotate b - shift down all elements of stack b by 1. The last eleme
 
 RRR : rra and rrb at the same time.
 
-ALGORITHM METHODOLOGY:
+SMALL LIST (5 or less numbers) ALGORITHM METHODOLOGY:
 
 1)Take higher half of numbers of stack A and put it into Stack b. 
   Ex: if the integers in stack A are {1, 2, 3, 4, 5, 6, 7, 8, 9} (can be any order too,  
@@ -40,10 +40,12 @@ ALGORITHM METHODOLOGY:
 
 2)Sort A while sorting B. Then finish sorting for B if still unsorted.
   Stack A will be sorted in ascending order, while Stack B will be sorted in descending order.
-  My individual sorts will sort 250 numbers in around 2900 steps. Using this individual
-  sort on Stack A alone (without transferring anything to stack B) will not pass the requirements, which is to sort
-  500 numbers in around 5300 steps. However, I am sorting stack A and while sorting stack B with the same algorithm
+  I am sorting stack A and while sorting stack B with the same algorithm
   template. Therefore when Stack A is finished, it is possible stack B will be finished sorting too. Sorting both stacks
   with the same Stack is possible because of instructions SS, RR, and RRR.
 
-3)use PA until stack B is empty and there you have it - a sorting algorithm designed just for this particular project :)
+3)Use PA until stack B is empty and there you have it - a sorting algorithm designed just for this particular project :)
+
+BIG LIST (6 or more numbers) ALGORITHM METHODOLOGY:
+
+1)oehouehoue magic in progress
