@@ -5,9 +5,10 @@ int	main(int ac, char **av)
 	t_n		*a;
 	char	**in;
 	int		i;
-	size_t	j;
+	int		j;
 
 	i = 0;
+	a = malloc(sizeof(t_n));
 	if (!(a = load(ac, av)))
 	{
 		ft_putendl("Error");
@@ -17,6 +18,6 @@ int	main(int ac, char **av)
 	in = solve(a, j);
 	while (in[i])
 		ft_putendl(in[i++]);
-	ft_printf("Sorted %zu numbers in %d steps", j, i);  
-	ft_strdel(in);
+	ft_printf("Sorted %d numbers in %d steps\n", j, i);
+	//ft_strdel(in);
 }

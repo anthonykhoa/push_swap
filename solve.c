@@ -35,25 +35,28 @@ static void	cut_arr(int **t, int k)
 				tab[i] = tmp;
 			}
 	}
-	i = k / 2 - 1;
-	while (++i < k - 1)
-		cut[i - k / 2] = tab[i + 1];
+	i = -1;
+	while (++i < k / 2)
+		cut[i] = tab[i];
 	//free(*t);
 	*t = cut;
 }
 
-static void	finish(char	**in, t_n *a, t_n *b, size_t i)
+void	finish(char	**in, t_n *a, t_n **stack_b, size_t i)
 {
+	t_n	*b;
+
+	b = *stack_b;
 	while (*in)
 		in++;
 	while (i--)
 	{
 		*in++  = ft_strdup("pa");
-		push(a, b);
+		push(&a, b);
 	}
-}
+} 
 
-char		**solve(t_n *a, size_t i)
+char		**solve(t_n *a, int	i)
 {
 	char	**in;
 	t_n		*b;
@@ -62,12 +65,17 @@ char		**solve(t_n *a, size_t i)
 	b = NULL;
 	tab = int_arr(a, i);
 	cut_arr(&tab, i);
-	in = grow_b(a, b, tab, i);
+	if (sorted(a, i, 'a'))
+	{
+		in = ft_memalloc(sizeof(char*));
+		return (in);
+	}
+	in = grow_b(a, &b, tab, i); 
 	if (!sorted(a, i - i / 2, 'a'))
-		sort(a, b, i, in);
+		sort(a, b, 1, in);
 	if (!sorted(b, i / 2, 'b'))
-		sort(a, b, i / 2, in);
-	finish(in, a, b, i / 2);
+		sort(a, b, 0, in);
+	finish(in, a, &b, i / 2);
 	//free(b);
 	return (in);
 }

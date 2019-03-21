@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	sorted(t_n *s, size_t i, char c)
+int	sorted(t_n *s, int i, char c)
 {
 	if (list_size(s) != i)
 		return (0);

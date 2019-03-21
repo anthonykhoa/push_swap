@@ -34,14 +34,15 @@ static void	sort_a(t_n *a, t_n *b, size_t i, char **in)
 	int	min;
 
 	max = list_max(a);
-	min = list_min(a);
+	min = list_min(b);
 	while (*in)
 		in++;
 	while (!sorted(a, i - i / 2, 'a'))
 	{
 		if (a->v > a->next->v)
 		{
-			*in++ = (b->v < b->next->v) ? ft_strdup("ss") : ft_strdup("sa");
+			*in++ = (b->next && b->v < b->next->v) ?
+			ft_strdup("ss") : ft_strdup("sa");
 			(b->next && b->v < b->next->v) ? swap(a, b, 'r'): swap(a, b, 'a');
 		}
 		if (sorted(a, i - i / 2, 'a'))
@@ -50,11 +51,10 @@ static void	sort_a(t_n *a, t_n *b, size_t i, char **in)
 		sorted(b, i / 2, 'b') ? rotate(a, b, "ra") : rotate(a, b, "rr");
 		if (a->v == max)
 		{
-			*in++ = sorted(b, i / 2, 'b') ? ft_strdup("ra") : ft_strdup("rr");
-			(b->v == min) ? rotate(a, b, "ra") : rotate(a, b, "rr");
+			*in++ =  (b->v == min) ? ft_strdup("rr") : ft_strdup("ra");
+			(b->v == min) ? rotate(a, b, "rr") : rotate(a, b, "ra");
 		}
 	}
-	*in = NULL;
 }
 
 static void	sort_b(t_n *a, t_n *b, size_t i, char **in)
@@ -68,7 +68,7 @@ static void	sort_b(t_n *a, t_n *b, size_t i, char **in)
 	{
 		if (b->v < b->next->v)
 		{
-			*in++ = ft_strdup("sa");
+			*in++ = ft_strdup("sb");
 			swap(a, b, 'b');
 		}
 		if (sorted(b, i, 'b'))
@@ -84,7 +84,11 @@ static void	sort_b(t_n *a, t_n *b, size_t i, char **in)
 	}
 }
 
-void		sort(t_n *a, t_n *b, size_t i, char **in)
+void		sort(t_n *a, t_n *b, int c, char **in)
 {
-	i - i / 2 == list_size(a) ? sort_a(a, b, i, in) : sort_b(a, b, i / 2, in);
+	//if 1 / 2 and i - 1 / 2 are the same u dunno which is which..
+	if (c)
+		sort_a(a, b, list_size(a) + list_size(b), in);
+	else
+		sort_b(a, b, list_size(b), in);
 }

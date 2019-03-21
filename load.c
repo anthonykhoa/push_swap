@@ -1,13 +1,4 @@
 #include "push_swap.h"
-//make function to check if list a or b is sorted. if yes, mark global variable to indicate to stop checking that stack.
-
-/*
-if (option) execute instruction
-else if (check tab and determine best instruction to use after)
-1)make double array of input, then check each pointer in double array 
-2)check if number is bigger than an int
-3)at end of main solve function, have option for checker(global var) - if (global var) 
-*/
 
 int	duplicates_check(int ac, char **av)
 {
@@ -71,9 +62,9 @@ t_n	*load(int ac, char **av)
 	t_n	*a;
 	t_n	*head;
 
-	if (!number_check(ac, av) || !overflow_check(ac, av) ||
+	/*if (!number_check(ac, av) || !overflow_check(ac, av) ||
 		!duplicates_check(ac, av))
-		return (NULL);
+		return (NULL);*/
 	ac--;
 	av++;
 	a = malloc(sizeof(t_n));

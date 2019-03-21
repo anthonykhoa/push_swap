@@ -24,14 +24,27 @@ static void	pop(t_n	**stack)
 	else
 		*stack = NULL;
 }
-//PROBLEM IS THAT P IS NOT MALLOCED YET. THIS CAUSES SEGFAULT BECAUSE IM TRYNA ACCESS SOMETHING THATS NOT MALLOCED YEEEEEET
-void		push(t_n *s, t_n *p)
+
+static void	handle_null_stack(t_n **stack, int v)
 {
+	t_n	*s;
+
+	*stack = malloc(sizeof(t_n));
+	s = *stack;
+	s->v = v;
+	s->next = malloc(sizeof(t_n));
+	s->next = NULL;
+}
+
+static void	regular_push(t_n **stack, int v)
+{
+	t_n	*s;
 	int	tmp;
 	int	tmp2;
 
+	s = *stack;
 	tmp = s->v;
-	s->v = p->v;
+	s->v = v;
 	while (s)
 	{
 		if (!(s->next))
@@ -46,5 +59,10 @@ void		push(t_n *s, t_n *p)
 		tmp = tmp2;
 		s = s->next;
 	}
+}
+
+void		push(t_n **stack, t_n *p)
+{
+	!*stack ? handle_null_stack(stack, p->v) : regular_push(stack, p->v);
 	pop(&p);
 }
