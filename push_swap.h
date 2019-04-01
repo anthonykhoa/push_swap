@@ -19,6 +19,7 @@ void			rotate(t_n *a, t_n *b, char *in, int x);
 int				list_size(t_n *s);
 int				sorted(t_n *s, int i, char c);
 void			rem_int_arr_element(int **arr, int c, int v);
+char			**cut_down();
 void			handle_leftovers(t_n **stack, int n);
 int				no_different_nodes(t_n *s);
 int				has_node(t_n *s, int n);

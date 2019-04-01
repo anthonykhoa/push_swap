@@ -19,23 +19,23 @@ static t_n	*stack_dup(t_n *s)
 	return (head);
 }
 
-static void	do_instructions(t_n *a)
+static void	do_instructions(t_n *a, char **in)
 {
 	int	i;
 	t_n	*b;
 
 	i = -1;
 	b = NULL;
-	while (g_in[++i])
+	while (in[++i])
 	{
-		if (strequ(g_in[i], "pa"))
+		if (strequ(in[i], "pa"))
 			push(&a, &b, 0, 0);
-		else if (strequ(g_in[i], "pb"))
+		else if (strequ(in[i], "pb"))
 			push(&b, &a, 0, 0);
-		else if (g_in[i][0] == 's')
-			swap(a, b, g_in[i][1], 0);
+		else if (in[i][0] == 's')
+			swap(a, b, in[i][1], 0);
 		else
-			rotate(a, b, g_in[i], 0);
+			rotate(a, b, in[i], 0);
 	}
 }
 
@@ -44,6 +44,7 @@ int			main(int ac, char **av)
 	t_n	*a;
 	t_n	*b;
 	int	i;
+    char        **in;
 
 	i = 0;
 	if (!(a = load(ac, av)))
@@ -54,6 +55,7 @@ int			main(int ac, char **av)
 	b = stack_dup(a);
 	i = list_size(a);
 	solve(a, i);
-	do_instructions(b);
+    in = cut_down();
+	do_instructions(b, in);
 	!sorted(b, i, 'a') ? ft_putendl("KO") : ft_putendl("OK");
 }
