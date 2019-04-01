@@ -33,7 +33,7 @@ RRR : rra and rrb at the same time.
 
 ALGORITHM METHODOLOGY:
 
-FOR SMALL LISTS (5 numbers or less):
+FOR SMALL LISTS (10 numbers or less):
 -A bubble sort is used.
 
 1)Take higher half of numbers of stack A and put it into Stack b. 
@@ -48,7 +48,7 @@ FOR SMALL LISTS (5 numbers or less):
 
 3)use PA until stack B is empty.
 
-FOR BIG LISTS (6 or more numbers):
+FOR BIG LISTS (11 or more numbers):
 -A bottom up merge sort is the algorithm implemented. I assign node values to each integer in stacks A and B
  in order to keep track of which numbers to merge with one another.
 
