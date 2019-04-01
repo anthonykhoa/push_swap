@@ -2,13 +2,15 @@
 
 static int	str_size(char **str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);
 }
 
-static void set_instructions(char **cut, int j, int ca, int cb)
+static void	set_instructions(char **cut, int j, int ca, int cb)
 {
 	if (ca < cb && ca && cb)
 	{
@@ -37,11 +39,16 @@ static void set_instructions(char **cut, int j, int ca, int cb)
 			cut[j++] = "rb";
 }
 
-char    **cut_down()
+char		**cut_down(void)
 {
-	char **cut;
-	int i = 0, j = 0, ca = 0, cb = 0;
+	char	**cut;
+	int		i;
+	int		j;
+	int		ca;
+	int		cb;
 
+	i = 0;
+	j = 0;
 	cut = ft_memalloc(sizeof(char*) * (str_size(g_in) + 1));
 	while (g_in[i])
 	{
@@ -49,20 +56,10 @@ char    **cut_down()
 		{
 			ca = 0;
 			cb = 0;
-			while (g_in[i] && (strequ(g_in[i], "ra")
-						|| strequ(g_in[i], "rb")))
-				strequ(g_in[i++], "ra") ? ca++ :  cb++;
+			while (g_in[i] && (strequ(g_in[i], "ra") || strequ(g_in[i], "rb")))
+				strequ(g_in[i++], "ra") ? ca++ : cb++;
 			set_instructions(cut, j, ca, cb);
-			if (ca < cb && ca && cb)
-				j += cb;
-			else if (ca > cb && ca && cb)
-				j += ca;
-			else if (ca == cb)
-				j += ca;
-			else if (ca)
-				j += ca;
-			else if (cb)
-				j += cb;
+			j += (ca < cb && ca && cb) || (cb && !ca) ? cb : ca;
 		}
 		else
 			cut[j++] = g_in[i++];
