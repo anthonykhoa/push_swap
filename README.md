@@ -44,15 +44,15 @@ FOR SMALL LISTS (10 numbers or less):
   Stack A will be sorted in ascending order, while Stack B will be sorted in descending order.
   I am sorting stack A and while sorting stack B with the same algorithm template.
   Therefore when Stack A is finished, it is possible stack B will be finished sorting too. Sorting both stacks
-  with the same Stack is possible because of instructions SS, RR, and RRR.
+  at the same time is possible because of instructions SS, RR, and RRR.
 
 3)use PA until stack B is empty.
 
 FOR BIG LISTS (11 or more numbers):
--A bottom up merge sort is the algorithm implemented. I assign node values to each integer in stacks A and B
+-A bottom up merge sort is the foundation of the algorithm implemented. I assign node values to each integer in stacks A and B
  in order to keep track of which numbers to merge with one another.
 
-1)push half of stack A onto stack B (accomplished in n / 2 steps)
+1)push half of stack A onto stack B (accomplished in n / 2 steps). Literally just repeat instruction PB over and over
 
 2)Assign node values to indicate which subarrays to merge with each other.
 
@@ -60,7 +60,10 @@ FOR BIG LISTS (11 or more numbers):
 
 4)My algorithm is recursive and works like so:
      a. increase size of subarray (multiplies by 2 each time)
-     b. re rank nodes since size of subarray has changed 
+     b. re-value nodes since size of subarray has changed 
      c. merge all nodes with each other
 
-My code currenly sorts 500 numbers in 6800 steps, but I need to hit 5300 steps in order to pass. blehhh
+Without optimization this will sort 500 numbers in ~7000 steps.
+
+My code currenly sorts 500 numbers in 6800 steps, but I need to hit 5300 steps in order to pass. blehhh. more optimization details coming as soon as possible :)
+
