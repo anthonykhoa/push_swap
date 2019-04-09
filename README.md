@@ -63,4 +63,4 @@ FOR BIG LISTS (6 or more numbers):
      b. re rank nodes since size of subarray has changed 
      c. merge all nodes with each other
 
-My code currenly sorts 500 numbers in 6800 steps, but I need to hit 5300 steps in order to pass. blehhh
+My code currenly sorts 500 numbers in 6560 steps, but I need to hit 5300 steps in order to pass. blehhh
