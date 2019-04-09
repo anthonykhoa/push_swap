@@ -17,6 +17,6 @@ int	main(int ac, char **av)
 	solve(a, j);
 	in = cut_down();
 	while (in[i])
-		i++;
+		ft_putendl(in[i++]);
 	ft_printf("Sorted %d numbers in %d steps\n", j, i);
 }

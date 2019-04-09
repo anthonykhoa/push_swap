@@ -1,4 +1,4 @@
-OBJS = push.o swap.o rotate.o load.o aux_funcs1.o aux_funcs2.o solve.o grow_small_b.o bubble_sort.o merge_sort.o rank_nodes.o cut_down.o
+OBJS = push.o swap.o rotate.o load.o aux_funcs1.o aux_funcs2.o solve.o grow_small_b.o bubble_sort.o merge_sort.o rank_nodes.o cut_down.o sorted_nodes_check.o
 
 PS_OBJS = push_swap.o
 

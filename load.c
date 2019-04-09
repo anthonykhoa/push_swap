@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	duplicates_check(int ac, char **av)
+static int	duplicates_check(int ac, char **av)
 {
 	int	i;
 	int	j;
@@ -16,7 +16,7 @@ int	duplicates_check(int ac, char **av)
 	return (1);
 }
 
-int	overflow_check(int ac, char **av)
+static int	overflow_check(int ac, char **av)
 {
 	ac--;
 	av++;
@@ -29,7 +29,7 @@ int	overflow_check(int ac, char **av)
 	return (1);
 }
 
-int	number_check(int ac, char **av)
+static int	number_check(int ac, char **av)
 {
 	int	i;
 	int	y;
@@ -57,7 +57,7 @@ int	number_check(int ac, char **av)
 	return (1);
 }
 
-t_n	*load(int ac, char **av)
+t_n		*load(int ac, char **av)
 {
 	t_n	*a;
 	t_n	*head;

@@ -59,10 +59,10 @@ void		solve(t_n *a, int i)
 	g_in = ft_memalloc(sizeof(char*) * i * 400);
 	if (sorted(a, i, 'a'))
 		return ;
-	if (i > 5)
+	if (i > 5) //later, make this 5 a 10
 	{
 		grow_big_b(a, &b);
-		merge_sort(a, &b, 1);
+		merge_sort(a, b, 1);
 		return ;
 	}
 	tab = int_arr(a, i);

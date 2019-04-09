@@ -32,6 +32,6 @@ void		swap(t_n *a, t_n *b, char c, int x)
 		perform_swap(a);
 		perform_swap(b);
 		if (x)
-			*(g_in + g_i++) = "sb";
+			*(g_in + g_i++) = "ss";
 	}
 }

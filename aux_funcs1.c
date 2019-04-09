@@ -34,6 +34,27 @@ int		sorted(t_n *s, int i, char c)
 	return (1);
 }
 
+t_n	*stack_dup(t_n *s)
+{
+	t_n *dup;
+	t_n *head;
+
+	dup = malloc(sizeof(t_n));
+	dup->v = s->v;
+	dup->n = s->n;
+	head = dup;
+	while (s->next)
+	{
+		dup->next = malloc(sizeof(t_n));
+		dup->next->v = s->next->v;
+		dup->next->n = s->next->n;
+		dup = dup->next;
+		s = s->next;
+	}
+	dup->next = NULL;
+	return (head);
+}
+
 void	rem_int_arr_element(int **arr, int c, int v)
 {
 	int	*tab;
@@ -48,31 +69,4 @@ void	rem_int_arr_element(int **arr, int c, int v)
 			tab[j++] = arr[0][i];
 	free(*arr);
 	*arr = tab;
-}
-
-int		no_different_nodes(t_n *s)
-{
-	int	c;
-
-	c = s->n;
-	while (s)
-	{
-		if (s->n != c)
-			return (0);
-		s = s->next;
-	}
-	return (1);
-}
-
-void	handle_leftovers(t_n **stack, int n)
-{
-	t_n	*s;
-
-	s = *stack;
-	while (s)
-	{
-		if (s->n == 0)
-			s->n = n;
-		s = s->next;
-	}
 }

@@ -1,55 +1,80 @@
 #include "push_swap.h"
 
-static void	rank_leftover_nodes(t_n *a, t_n **stack_b, int size, int n)
-{
-	t_n	*b;
+static int g_va;
+static int g_vb;
 
-	b = *stack_b;
-	while (a && size--)
-	{
-		a->n = n;
-		a = a->next;
-	}
-	while (b && size--)
-	{
-		b->n = n;
-		b = b->next;
-	}
+static void set_nodes(t_n *a, t_n *b, int n)
+{
+    if (a)
+    {
+        if (a->v > g_va)
+        {
+            while (a)
+            {
+                a->n = n;
+                a = a->next;
+            }
+        }
+        else
+            while (a)
+            {
+                a->n = 0;
+                a = a->next;
+            }
+    }
+    else if (b)
+    {
+        if (b->v > g_vb)
+        {
+            while (b)
+            {
+                b->n = n;
+                b = b->next;
+            }
+        }
+        else
+            while (b)
+            {
+                b->n = 0;
+                b = b->next;
+            }
+    }
 }
 
-static void	set_nodes(t_n *a, t_n **stack_b, int n)
+static void rank_leftover_nodes(t_n *a, t_n *b, int size, int n)
 {
-	t_n	*b;
-
-	b = *stack_b;
-	while (a)
-	{
-		a->n = n;
-		a = a->next;
-	}
-	while (b)
-	{
-		b->n = n;
-		b = b->next;
-	}
+    if (a)
+        while (a && size--)
+        {
+            a->n = n;
+            g_va = a->v;
+            a = a->next;
+        }
+    if (b)
+       while (b && size--)
+       {
+            b->n = n;
+            g_vb = b->v;
+            b = b->next;
+       }
+    set_nodes(a, b, n);
 }
 
-void		rank_nodes(t_n *a, t_n **stack_b, int size)
+void		rank_nodes(t_n *a, t_n *b, int size)
 {
-	t_n	*b;
 	int	i;
 	int	tmp;
 
-	b = *stack_b;
 	i = 1;
 	tmp = size;
-	size = 0;
 	while (a && b)
 	{
 		size = tmp;
-		while (size && a && b)
+		while (a && b && size)
 		{
 			a->n = i;
+            g_va = a->v;
+            g_vb = b->v;
 			b->n = i;
 			a = a->next;
 			b = b->next;
@@ -57,5 +82,9 @@ void		rank_nodes(t_n *a, t_n **stack_b, int size)
 		}
 		i++;
 	}
-	size ? rank_leftover_nodes(a, &b, size, --i) : set_nodes(a, &b, 0);
+    --i;
+	if (size)
+        rank_leftover_nodes(a, b, size, i);
+    else
+        set_nodes(a, b, i);
 }

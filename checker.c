@@ -1,24 +1,5 @@
 #include "push_swap.h"
 
-static t_n	*stack_dup(t_n *s)
-{
-	t_n *dup;
-	t_n *head;
-
-	dup = malloc(sizeof(t_n));
-	dup->v = s->v;
-	head = dup;
-	while (s->next)
-	{
-		dup->next = malloc(sizeof(t_n));
-		dup->next->v = s->next->v;
-		dup = dup->next;
-		s = s->next;
-	}
-	dup->next = NULL;
-	return (head);
-}
-
 static void	do_instructions(t_n *a, char **in)
 {
 	int	i;

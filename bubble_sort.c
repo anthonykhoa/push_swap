@@ -1,4 +1,4 @@
-#include "push_swap.h"
+           #include "push_swap.h"
 
 static int	list_min(t_n *s)
 {
@@ -71,11 +71,6 @@ static void	sort_b(t_n *a, t_n *b, size_t i)
 
 void		bubble_sort(t_n *a, t_n *b, int c)
 {
-	int	max;
-	int	min;
-
-	max = list_max(a);
-	min = list_min(b);
 	if (c)
 		sort_a(a, b, list_size(a) + list_size(b));
 	else
