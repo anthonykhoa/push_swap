@@ -31,25 +31,17 @@ RRB : reverse rotate b - shift down all elements of stack b by 1. The last eleme
 
 RRR : rra and rrb at the same time.
 
-ALGORITHM METHODOLOGY:
+ALGORITHM METHODOLOGY: bottom up merge sort
 
-FOR SMALL LISTS (5 numbers or less):
--A bubble sort is used.
+Lists of 5 or 4 numbers:
 
-1)Take higher half of numbers of stack A and put it into Stack b. 
-  Ex: if the integers in stack A are {1, 2, 3, 4, 5, 6, 7, 8, 9} (can be any order too,  
-  I just used this for clarity... The stack could be {3,1,2,6,4,5,7,9,8} too) then we put 6, 7, 8, and 9 into Stack B.
-
-2)Sort A while sorting B. Then finish sorting for B if still unsorted.
-  Stack A will be sorted in ascending order, while Stack B will be sorted in descending order.
-  I am sorting stack A and while sorting stack B with the same algorithm template.
-  Therefore when Stack A is finished, it is possible stack B will be finished sorting too. Sorting both stacks
-  with the same Stack is possible because of instructions SS, RR, and RRR.
-
-3)use PA until stack B is empty.
+1) Push 2 numbers into stack B. Then check if first two numbers of each stack are sorted. If not, swap.
+2) If list is 5 numbers, if fifth number is greater than the second number then do nothig, or less than the first.
+2) Merge sort Stack B with Stack A, disregarding the extra fifth number if the list is 5 numbers.
+3) The fifth number should now be on top.
 
 FOR BIG LISTS (6 or more numbers):
--A bottom up merge sort is the algorithm implemented. I assign node values to each integer in stacks A and B
+-I assign node values to each integer in stacks A and B
  in order to keep track of which numbers to merge with one another.
 
 1)push half of stack A onto stack B (accomplished in n / 2 steps)
