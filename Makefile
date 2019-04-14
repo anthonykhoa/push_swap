@@ -10,6 +10,44 @@ FLAGS = -Wall -Wextra -Werror -g
 
 all: libft_maker push_swap checker
 
+rn:
+	rm nums
+	touch nums
+	gcc -o rn random_number_generator.c $(LIB)
+
+500:
+	rm nums
+	touch nums
+	gcc -o rn random_number_generator.c $(LIB)
+	./rn 500
+	open nums
+	rm rn
+
+100:
+	rm nums
+	touch nums
+	gcc -o rn random_number_generator.c $(LIB)
+	./rn 100
+	open nums
+	rm rn
+
+5:
+	rm nums
+	touch nums
+	gcc -o rn random_number_generator.c $(LIB)
+	./rn 5
+	open nums
+	rm rn
+
+3:
+	rm nums
+	touch nums
+	gcc -o rn random_number_generator.c $(LIB)
+	./rn 3
+	open nums
+	rm rn
+
+
 libft_maker:
 	@make -C libft
 

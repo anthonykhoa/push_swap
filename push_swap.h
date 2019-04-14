@@ -41,7 +41,7 @@ int				last_value(t_n *s);
 int				last_node_value(t_n *s);
 void			handle_leftovers(t_n *z, t_n *n, int size);
 int				largest_node_element(t_n *s, int n);
-void			print_stacks(t_n *a, t_n *b, char *in);
+void			print_stacks(t_n *a, t_n *b, char *in, int i);
 int				largest_node(t_n *s);
 int				last_node(t_n *s);
 t_n				*load(int ac, char **av);

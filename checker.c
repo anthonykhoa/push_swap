@@ -6,11 +6,13 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:07:30 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/14 09:23:54 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/14 13:27:39 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int g_dam;
 
 static void	do_instructions(t_n *a, char **in)
 {
@@ -19,6 +21,8 @@ static void	do_instructions(t_n *a, char **in)
 
 	i = -1;
 	b = NULL;
+	if (g_v)
+		print_stacks(a, b, NULL, -1);
 	while (in[++i])
 	{
 		if (strequ(in[i], "pa"))
@@ -30,7 +34,7 @@ static void	do_instructions(t_n *a, char **in)
 		else
 			rotate(a, b, in[i], 0);
 		if (g_v)
-			print_stacks(a, b, *in);
+			print_stacks(a, b, in[i], i + 1);
 	}
 }
 
@@ -56,6 +60,7 @@ static void	stdin_instructions(t_n *a, int i)
 	t_n		*b;
 
 	b = NULL;
+	g_v ? print_stacks(a, b, NULL, -1) : 0;
 	while (get_next_line(0, &str))
 	{
 		if (strequ(str, ""))
@@ -63,8 +68,7 @@ static void	stdin_instructions(t_n *a, int i)
 			free(str);
 			break ;
 		}
-		if (!instruction_check(str))
-			sad_exit();
+		!instruction_check(str) ? sad_exit() : 0;
 		if (strequ(str, "pa"))
 			push(&a, &b, 0, 0);
 		else if (strequ(str, "pb"))
@@ -73,8 +77,7 @@ static void	stdin_instructions(t_n *a, int i)
 			swap(a, b, str[1], 0);
 		else
 			rotate(a, b, str, 0);
-		if (g_v)
-			print_stacks(a, b, str);
+		g_v ? print_stacks(a, b, str, ++g_dam) : 0;
 		free(str);
 	}
 	!sorted(a, i) ? ft_putendl("KO") : ft_putendl("OK");

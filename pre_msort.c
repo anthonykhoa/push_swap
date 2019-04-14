@@ -6,17 +6,20 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:19:27 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:19:28 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/14 12:31:36 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	last_to_zero(t_n *s)
+static void	last_to_zero(t_n *a, t_n *b)
 {
-	while (s->next)
-		s = s->next;
-	s->n = 0;
+	while (a->next)
+		a = a->next;
+	a->n = 0;
+	while (b->next)
+		b = b->next;
+	b->n = 0;
 }
 
 static void	finish_presort(t_n *a, t_n *b)
@@ -34,7 +37,6 @@ static void	finish_presort(t_n *a, t_n *b)
 	rotate(a, b, "ra", 1);
 }
 
-
 void		pre_msort(t_n *a, t_n *b)
 {
 	int x;
@@ -46,10 +48,7 @@ void		pre_msort(t_n *a, t_n *b)
 	c = 1;
 	rank_nodes(a, b, 1);
 	if (list_size(a) & 1)
-	{
-		last_to_zero(a);
-		last_to_zero(b);
-	}
+		last_to_zero(a, b);
 	while (((a->v != x && a->v != x2) || c) && a->n)
 	{
 		if (a->v > a->next->v)
