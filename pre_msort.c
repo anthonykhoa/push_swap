@@ -21,24 +21,19 @@ static void	last_to_zero(t_n *s)
 
 static void	finish_presort(t_n *a, t_n *b)
 {
-	int i;
-
-	i = 0;
-	if (!a->n && !b->n)
+	if (a->v < b->n)
 	{
-		if (a->v < b->n)
-		{
-			rotate(a, b, "ra", 1);
-			push(&a, &b, 1, 1);
-		}
-		else
-		{
-			push(&a, &b, 1, 1);
-			rotate(a, b, "ra", 1);
-		}
+		rotate(a, b, "ra", 1);
+		push(&a, &b, 1, 1);
+	}
+	else
+	{
+		push(&a, &b, 1, 1);
 		rotate(a, b, "ra", 1);
 	}
+	rotate(a, b, "ra", 1);
 }
+
 
 void		pre_msort(t_n *a, t_n *b)
 {
@@ -65,5 +60,6 @@ void		pre_msort(t_n *a, t_n *b)
 		rotate(a, b, "rr", 1);
 		c = 0;
 	}
-	finish_presort(a, b);
+	if (!a->n)
+		finish_presort(a, b);
 }

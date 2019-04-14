@@ -29,12 +29,14 @@ static void	do_instructions(t_n *a, char **in)
 			swap(a, b, in[i][1], 0);
 		else
 			rotate(a, b, in[i], 0);
+		if (g_v)
+			print_stacks(a, b, *in);
 	}
 }
 
 static void	sad_exit(void)
 {
-	ft_putendl("Error :(");
+	ft_putendl("Error invalid instruction :(");
 	exit(1);
 }
 
@@ -48,7 +50,7 @@ static int	instruction_check(char *in)
 	return (1);
 }
 
-static void	stdin_instructions(t_n *a)
+static void	stdin_instructions(t_n *a, int i)
 {
 	char	*str;
 	t_n		*b;
@@ -71,8 +73,11 @@ static void	stdin_instructions(t_n *a)
 			swap(a, b, str[1], 0);
 		else
 			rotate(a, b, str, 0);
+		if (g_v)
+			print_stacks(a, b, str);
 		free(str);
 	}
+	!sorted(a, i) ? ft_putendl("KO") : ft_putendl("OK");
 }
 
 int			main(int ac, char **av)
@@ -94,8 +99,8 @@ int			main(int ac, char **av)
 		solve(a, i);
 		in = cut_down();
 		do_instructions(b, in);
+		!sorted(b, i) ? ft_putendl("KO") : ft_putendl("OK");
 	}
 	else
-		stdin_instructions(a);
-	!sorted(b, i) ? ft_putendl("KO") : ft_putendl("OK");
+		stdin_instructions(a, i);
 }

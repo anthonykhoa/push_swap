@@ -6,11 +6,13 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:09:26 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:09:27 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/14 12:10:15 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int g_check_ops;
 
 static int	duplicates_check(int ac, char **av)
 {
@@ -69,16 +71,32 @@ static int	number_check(int ac, char **av)
 	return (1);
 }
 
+int			check_options(char **av)
+{
+	int	i;
+
+	i = 0;
+	if (strequ(av[1], "plz") || strequ(av[1], "-v"))
+		i++;
+	if (strequ(av[2], "plz") || strequ(av[2], "-v"))
+		i++;
+	if (strequ(av[1], "plz") || strequ(av[2], "plz"))
+		g_plz++;
+	if (strequ(av[1], "-v") || strequ(av[2], "-v"))
+		g_v++;
+	return (i);
+}
+
 t_n			*load(int ac, char **av)
 {
 	t_n	*a;
 	t_n	*head;
 
-	if (strequ(av[1], "plz"))
+	g_check_ops = check_options(av);
+	while (g_check_ops--)
 	{
 		ac--;
 		av++;
-		g_plz++;
 	}
 	if (!number_check(ac, av) || !overflow_check(ac, av) ||
 		!duplicates_check(ac, av))
