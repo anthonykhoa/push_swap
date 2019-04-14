@@ -8,7 +8,8 @@ mode. At the end of this mode, "OK" will appear if the stack is sorted, and "KO"
 EXTRA OPTIONS:
 -In the checker program, use command "plz" to check if instructions generated from push_swap actually sort the list. This
  will skip the user from manually inputting commands themselves.
--In the checker program, use command "-v" to enter stack visualizer mode - this mode lets you see what happens after each     instruction gets applied
+-In the checker program, use command "-v" to enter stack visualizer mode - this mode lets you see what happens after each
+  instruction gets applied
  to the stack.
 -"plz" and "-v" options can be applied together. Ex: ./checker "-v" "plz" "3" "2" 1"
 -I've provided a random number generator with 4 list sizes: 500, 100, 5, and 3. Type in make followed by the number
@@ -18,7 +19,9 @@ EXTRA OPTIONS:
   Ex: ./rn 333
 
 The project gives you only two stacks to work with, stacks A and B.
-Stack A will be filled with a list of integers. The goal of the project is to sort the integers in stack A into ascending order, using only a limited instruction set and stacks A and B. Furthermore.. the project calls them stacks, but they are not true stacks - I would instead call them circular linked lists.
+Stack A will be filled with a list of integers. The goal of the project is to sort the integers in stack A into ascending
+order, using only a limited instruction set and stacks A and B. Furthermore.. the project calls them stacks, but they are
+not true stacks - I would instead call them circular linked lists.
 Take a look at the project PDF for more details on the project!
 Here are only instructions allowed for using in sorting the Stacks:
 
