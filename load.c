@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/13 21:09:26 by anttran           #+#    #+#             */
+/*   Updated: 2019/04/13 21:09:27 by anttran          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	duplicates_check(int ac, char **av)
@@ -57,11 +69,17 @@ static int	number_check(int ac, char **av)
 	return (1);
 }
 
-t_n		*load(int ac, char **av)
+t_n			*load(int ac, char **av)
 {
 	t_n	*a;
 	t_n	*head;
 
+	if (strequ(av[1], "plz"))
+	{
+		ac--;
+		av++;
+		g_plz++;
+	}
 	if (!number_check(ac, av) || !overflow_check(ac, av) ||
 		!duplicates_check(ac, av))
 		return (NULL);

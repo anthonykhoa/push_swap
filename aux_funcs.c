@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   aux_funcs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/13 21:11:22 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:11:25 by anttran          ###   ########.fr       */
+/*   Created: 2019/04/13 21:04:04 by anttran           #+#    #+#             */
+/*   Updated: 2019/04/13 21:04:06 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+int		list_size(t_n *s)
 {
-	t_n		*a;
-	int		i;
-	int		j;
-	char	**in;
+	int	i;
 
 	i = 0;
-	if (ac == 1)
-		return (0);
-	if (!(a = load(ac, av)))
+	while (s)
 	{
-		ft_putendl("Error");
-		return (0);
+		i++;
+		s = s->next;
 	}
-	j = list_size(a);
-	solve(a, j);
-	in = cut_down();
-	while (in[i])
-		ft_putendl(in[i++]);
-	ft_printf("Sorted %d numbers in %d steps\n", j, i);
-	system("leaks push_swap");
+	return (i);
+}
+
+int		sorted(t_n *s, int i)
+{
+	if (list_size(s) != i)
+		return (0);
+	while (s)
+	{
+		if (s->next && s->v > s->next->v)
+			return (0);
+		s = s->next;
+	}
+	return (1);
 }

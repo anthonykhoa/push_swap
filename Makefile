@@ -1,4 +1,4 @@
-OBJS = push.o swap.o rotate.o load.o aux_funcs1.o aux_funcs2.o solve.o grow_small_b.o bubble_sort.o merge_sort.o rank_nodes.o cut_down.o sorted_nodes_check.o
+OBJS = push.o swap.o rotate.o load.o aux_funcs.o node_funcs1.o node_funcs2.o solve.o merge_sort.o rank_nodes.o cut_down.o pre_msort.o
 
 PS_OBJS = push_swap.o
 
@@ -6,7 +6,7 @@ CHECK_OBJS = checker.o
 
 LIB = libft/libft.a
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g 
 
 all: libft_maker push_swap checker
 

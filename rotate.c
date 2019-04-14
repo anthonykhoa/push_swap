@@ -1,34 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/13 21:16:48 by anttran           #+#    #+#             */
+/*   Updated: 2019/04/13 21:16:50 by anttran          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void	r(t_n *s)
+static void	ro(t_n *s)
 {
 	int	tmp;
+	int tmp2;
 
 	tmp = s->v;
+	tmp2 = s->n;
 	while (s->next)
 	{
 		s->v = s->next->v;
+		s->n = s->next->n;
 		s = s->next;
 	}
 	s->v = tmp;
+	s->n = tmp2;
 }
 
 static void	rr(t_n *s)
 {
 	int	tmp;
 	int	tmp2;
+	int	tmp3;
+	int	tmp4;
 	t_n	*t;
 
 	t = s;
 	tmp = s->v;
+	tmp3 = s->n;
 	while (t->next)
 		t = t->next;
 	s->v = t->v;
+	s->n = t->n;
 	while (s->next)
 	{
 		tmp2 = s->next->v;
+		tmp4 = s->next->n;
 		s->next->v = tmp;
+		s->next->n = tmp3;
 		tmp = tmp2;
+		tmp3 = tmp4;
 		s = s->next;
 	}
 }
@@ -56,13 +79,13 @@ static void	add_instructions(char *in)
 void		rotate(t_n *a, t_n *b, char *in, int x)
 {
 	if (in[1] == 'a')
-		r(a);
+		ro(a);
 	else if (in[1] == 'b')
-		r(b);
+		ro(b);
 	else if (!in[2])
 	{
-		r(a);
-		r(b);
+		ro(a);
+		ro(b);
 	}
 	else if (in[2] == 'a')
 		rr(a);

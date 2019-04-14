@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/13 21:13:28 by anttran           #+#    #+#             */
+/*   Updated: 2019/04/13 21:13:29 by anttran          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int g_tmp;
@@ -18,8 +30,7 @@ static void	pop(t_n **stack)
 	{
 		while (s->next)
 		{
-			if (c)
-				d = d->next;
+			c ? d = d->next : 0;
 			c = 1;
 			s->v = s->next->v;
 			s->n = s->next->n;
@@ -29,7 +40,10 @@ static void	pop(t_n **stack)
 		d->next = NULL;
 	}
 	else
+	{
+		free(*stack);
 		*stack = NULL;
+	}
 }
 
 static void	handle_null_stack(t_n **stack, int v, int n)
