@@ -68,7 +68,7 @@ void		solve(t_n *a, int i)
 		grow_b(a, &b);
 	if (i > 5)
 	{
-		if (list_size(a) == list_size(b))
+		if (list_size(a) > 10 && (list_size(a) == list_size(b)))
 		{
 			pre_msort(a, b);
 			merge_sort(a, b, 2);

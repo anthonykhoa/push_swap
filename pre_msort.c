@@ -24,10 +24,6 @@ static void	finish_presort(t_n *a, t_n *b)
 	int i;
 
 	i = 0;
-	if (has_node(a, 0) && !last_node(a))
-		rotate(a, b, "rra", 1);
-	if (has_node(b, 0) && !last_node(b))
-		rotate(a, b, "rrb", 1);
 	if (!a->n && !b->n)
 	{
 		if (a->v < b->n)

@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:07:30 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:07:33 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/14 09:23:54 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,47 @@ static void	do_instructions(t_n *a, char **in)
 	}
 }
 
-static void	stdin_instructions(char **in)
+static void	sad_exit(void)
 {
-	while (get_next_line(0, in))
-	{
-		if (!**in)
-			break ;
-		in++;
-	}
-	*in = NULL;
+	ft_putendl("Error :(");
+	exit(1);
 }
 
-static int	instructions_check(char **in)
+static int	instruction_check(char *in)
 {
-	while (*in)
-	{
-		if (!strequ(*in, "pa") && !strequ(*in, "pb") && !strequ(*in, "sa")
-			&& !strequ(*in, "sb") && !strequ(*in, "ss") && !strequ(*in, "ra")
-			&& !strequ(*in, "rb") && !strequ(*in, "rr") && !strequ(*in, "rra")
-			&& !strequ(*in, "rrb") && !strequ(*in, "rrr"))
-			return (0);
-		in++;
-	}
+	if (!strequ(in, "sa") && !strequ(in, "sb") && !strequ(in, "ss")
+		&& !strequ(in, "ra") && !strequ(in, "rb") && !strequ(in, "rr")
+		&& !strequ(in, "rra") && !strequ(in, "rrb") && !strequ(in, "rrr")
+		&& !strequ(in, "pa") && !strequ(in, "pb"))
+		return (0);
 	return (1);
+}
+
+static void	stdin_instructions(t_n *a)
+{
+	char	*str;
+	t_n		*b;
+
+	b = NULL;
+	while (get_next_line(0, &str))
+	{
+		if (strequ(str, ""))
+		{
+			free(str);
+			break ;
+		}
+		if (!instruction_check(str))
+			sad_exit();
+		if (strequ(str, "pa"))
+			push(&a, &b, 0, 0);
+		else if (strequ(str, "pb"))
+			push(&b, &a, 0, 0);
+		else if (str[0] == 's')
+			swap(a, b, str[1], 0);
+		else
+			rotate(a, b, str, 0);
+		free(str);
+	}
 }
 
 int			main(int ac, char **av)
@@ -72,16 +90,12 @@ int			main(int ac, char **av)
 	b = load(ac, av);
 	i = list_size(a);
 	if (g_plz)
-		solve(a, i);
-	in = g_plz ? cut_down() : ft_memalloc(sizeof(char*) * i * 400);
-	if (!g_plz)
-		stdin_instructions(in);
-	if (!instructions_check(in))
 	{
-		ft_putendl("Error");
-		return (0);
+		solve(a, i);
+		in = cut_down();
+		do_instructions(b, in);
 	}
-	do_instructions(b, in);
+	else
+		stdin_instructions(a);
 	!sorted(b, i) ? ft_putendl("KO") : ft_putendl("OK");
-	system("leaks checker");
 }

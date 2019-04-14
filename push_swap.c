@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:11:22 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:11:25 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/14 09:34:13 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,4 @@ int	main(int ac, char **av)
 	while (in[i])
 		ft_putendl(in[i++]);
 	ft_printf("Sorted %d numbers in %d steps\n", j, i);
-	system("leaks push_swap");
 }
