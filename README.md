@@ -51,4 +51,4 @@ FOR BIG LISTS (6 or more numbers):
      b. re rank nodes since size of subarray has changed 
      c. merge all nodes with each other
 
-My code currenly sorts 500 numbers in ~6500 steps.
+My code sorts 500 numbers in ~6500 steps.
