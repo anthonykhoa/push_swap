@@ -1,6 +1,3 @@
-# push_swap
-WORK IN PROGRESS
-
 This project is about sorting integers on a stack. The project gives you only two stacks to work with, stacks A and B.
 Stack A will be filled with a list of integers. The goal of the project is to sort the integers in stack A into ascending order, using only a limited instruction set and stacks A and B. Furthermore.. the project calls them stacks, but they are not true stacks - I would instead call them circular linked lists.
 Take a look at the project PDF for more details on the project!
@@ -33,18 +30,9 @@ RRR : rra and rrb at the same time.
 
 ALGORITHM METHODOLOGY:
 
-FOR SMALL LISTS (5 numbers or less):
--A bubble sort is used.
-
-1)Take higher half of numbers of stack A and put it into Stack b. 
-  Ex: if the integers in stack A are {1, 2, 3, 4, 5, 6, 7, 8, 9} (can be any order too,  
-  I just used this for clarity... The stack could be {3,1,2,6,4,5,7,9,8} too) then we put 6, 7, 8, and 9 into Stack B.
-
-2)Sort A while sorting B. Then finish sorting for B if still unsorted.
-  Stack A will be sorted in ascending order, while Stack B will be sorted in descending order.
-  I am sorting stack A and while sorting stack B with the same algorithm template.
-  Therefore when Stack A is finished, it is possible stack B will be finished sorting too. Sorting both stacks
-  with the same Stack is possible because of instructions SS, RR, and RRR.
+3 #'s: see sort_3 function of solve.c file
+4 #'s: PB 2 times, use swap if necessary on each stack, call mergesort
+5 #'s: PB 2 times, use sort_3 on stack A, use swap on stack B if necessary to sort, call mergesort
 
 3)use PA until stack B is empty.
 
@@ -63,4 +51,4 @@ FOR BIG LISTS (6 or more numbers):
      b. re rank nodes since size of subarray has changed 
      c. merge all nodes with each other
 
-My code currenly sorts 500 numbers in 6800 steps, but I need to hit 5300 steps in order to pass. blehhh
+My code sorts 500 numbers in ~6500 steps.
