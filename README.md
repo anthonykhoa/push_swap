@@ -1,4 +1,23 @@
-This project is about sorting integers on a stack. The project gives you only two stacks to work with, stacks A and B.
+This project comprises of two parts: the push_swap program, and the checker program.
+The push_swap program is the main focus of this project - it generates a list of instructions that should be able
+to sort a stack.
+The checker program takes in a list of numbers just like push_swap. After taking in this list of numbers, the user is
+able to type in their own commands to sort the stack themselves. Pressing enter with nothing written will terminate this
+mode. At the end of this mode, "OK" will appear if the stack is sorted, and "KO" if not.
+
+EXTRA OPTIONS:
+-In the checker program, use command "plz" to check if instructions generated from push_swap actually sort the list. This
+ will skip the user from manually inputting commands themselves.
+-In the checker program, use command "-v" to enter stack visualizer mode - this mode lets you see what happens after each     instruction gets applied
+ to the stack.
+-"plz" and "-v" options can be applied together. Ex: ./checker "-v" "plz" "3" "2" 1"
+-I've provided a random number generator with 4 list sizes: 500, 100, 5, and 3. Type in make followed by the number
+ you want, and a file named nums will automatically open up with your random list of numbers. 
+  Ex: make 500
+ -If you want to pick your own list size, enter the command "make rn" and then enter ./rn <#>
+  Ex: ./rn 333
+
+The project gives you only two stacks to work with, stacks A and B.
 Stack A will be filled with a list of integers. The goal of the project is to sort the integers in stack A into ascending order, using only a limited instruction set and stacks A and B. Furthermore.. the project calls them stacks, but they are not true stacks - I would instead call them circular linked lists.
 Take a look at the project PDF for more details on the project!
 Here are only instructions allowed for using in sorting the Stacks:
@@ -31,7 +50,9 @@ RRR : rra and rrb at the same time.
 ALGORITHM METHODOLOGY:
 
 3 #'s: see sort_3 function of solve.c file
+
 4 #'s: PB 2 times, use swap if necessary on each stack, call mergesort
+
 5 #'s: PB 2 times, use sort_3 on stack A, use swap on stack B if necessary to sort, call mergesort
 
 3)use PA until stack B is empty.
