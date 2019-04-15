@@ -47,7 +47,7 @@ void	print_stacks(t_n *a, t_n *b, char *in, int i)
 	}
 	while (b)
 	{
-		ft_printf("%d\n", b->v);
+		ft_printf("				%d\n", b->v);
 		b = b->next;
 	}
 	ft_printf("\n");
