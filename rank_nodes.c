@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:16:28 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:16:29 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/14 19:03:18 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ static int g_vb;
 static void	set_b(t_n *b, int n)
 {
 	if (b->v > g_vb)
-	{
 		while (b)
 		{
 			b->n = n;
 			b = b->next;
 		}
-	}
 	else
 		while (b)
 		{
@@ -38,13 +36,11 @@ static void	set_nodes(t_n *a, t_n *b, int n)
 	if (a)
 	{
 		if (a->v > g_va)
-		{
 			while (a)
 			{
 				a->n = n;
 				a = a->next;
 			}
-		}
 		else
 			while (a)
 			{

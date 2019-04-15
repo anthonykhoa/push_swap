@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:17:43 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:17:43 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/14 19:06:39 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,13 @@ void		solve(t_n *a, int i)
 		return ;
 	if (i > 3)
 		grow_b(a, &b);
-	if (i > 5)
+	if (i == 3)
+		sort_3(a);
+	else if (i == 4)
+		sort_4(a, b);
+	else if (i == 5)
+		sort_5(a, b);
+	else
 	{
 		if (list_size(a) > 10 && (list_size(a) == list_size(b)))
 		{
@@ -76,10 +82,4 @@ void		solve(t_n *a, int i)
 		else
 			merge_sort(a, b, 1);
 	}
-	else if (i == 3)
-		sort_3(a);
-	else if (i == 4)
-		sort_4(a, b);
-	else if (i == 5)
-		sort_5(a, b);
 }
