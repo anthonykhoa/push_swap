@@ -32,29 +32,14 @@ static void	r(t_n *s)
 	*(g_in + g_i++) = g_c ? "ra" : "rb";
 }
 
-static void handle_leftovers(t_n *z, t_n *n, int size)
+static void handle_leftovers(t_n *z, t_n *n)
 {
-    size *= 2;
-    if (n->n == -1)
-    {
-        while (n && size--)
-        {
-            n->n = -2;
-            n = n->next;
-        }
-        while (z && z->n == 0)
-        {
-            z->n = -2;
-            z = z->next;
-        }
-    }
-    else
-        while (z)
-        {
-            if (z->n == 0)
-                z->n = n->n;
-            z = z->next;
-        }
+	while (z)
+	{
+		if (z->n == 0)
+			z->n = n->n;
+		z = z->next;
+	}
 }
 
 static void	merge_nodes(t_n *s1, t_n *s2, int n)
@@ -68,8 +53,8 @@ static void	merge_nodes(t_n *s1, t_n *s2, int n)
 		}
 		else
 		{
-			if ((s1->v > largest_node_element(s2, n)) && (last_value(s2) ==
-						largest_node_element(s2, n)))
+			if ((s1->v > largest_node_element(s2, n)) &&
+				(last_value(s2) == largest_node_element(s2, n)))
 				push(&s2, &s1, g_c, 1);
 			else
 			{
@@ -85,7 +70,7 @@ static void	merge_nodes(t_n *s1, t_n *s2, int n)
 		r(s2);
 }
 
-static void	merge(t_n *a, t_n *b, int max_rank, int size)
+static void	merge(t_n *a, t_n *b, int max_rank)
 {
 	int	i;
 
@@ -98,13 +83,13 @@ static void	merge(t_n *a, t_n *b, int max_rank, int size)
 	}
 	if (a->n == 0)
 	{
-		handle_leftovers(a, b, size);
+		handle_leftovers(a, b);
 		g_c = 0;
 		merge_nodes(a, b, b->n);
 	}
 	else if (b->n == 0)
 	{
-		handle_leftovers(b, a, size);
+		handle_leftovers(b, a);
 		g_c = 1;
 		merge_nodes(b, a, a->n);
 	}
@@ -123,13 +108,13 @@ void		merge_sort(t_n *a, t_n *b, int size)
 			merge_nodes(a, b, 1);
 		}
 		g_c = 1;
-		handle_leftovers(a, b, size);
-		handle_leftovers(b, a, size);
+		handle_leftovers(a, b);
+		handle_leftovers(b, a);
 		merge_nodes(b, a, 1);
 		return ;
 	}
 	max_rank = largest_node(b);
-	merge(a, b, max_rank, size);
+	merge(a, b, max_rank);
 	size *= 2;
 	return (merge_sort(a, b, size));
 }
