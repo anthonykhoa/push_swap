@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:07:30 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/14 13:27:39 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/15 15:39:19 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,16 @@ static void	do_instructions(t_n *a, char **in)
 	}
 }
 
-static void	sad_exit(void)
+static void	do_stdin_instructions(t_n *a, t_n *b, char *str)
 {
-	ft_putendl("Error invalid instruction :(");
-	exit(1);
+	if (strequ(str, "pa"))
+		push(&a, &b, 0, 0);
+	else if (strequ(str, "pb"))
+		push(&b, &a, 0, 0);
+	else if (str[0] == 's')
+		swap(a, b, str[1], 0);
+	else
+		rotate(a, b, str, 0);
 }
 
 static int	instruction_check(char *in)
@@ -60,7 +66,8 @@ static void	stdin_instructions(t_n *a, int i)
 	t_n		*b;
 
 	b = NULL;
-	g_v ? print_stacks(a, b, NULL, -1) : 0;
+	if (g_v)
+		print_stacks(a, b, NULL, -1);
 	while (get_next_line(0, &str))
 	{
 		if (strequ(str, ""))
@@ -68,16 +75,14 @@ static void	stdin_instructions(t_n *a, int i)
 			free(str);
 			break ;
 		}
-		!instruction_check(str) ? sad_exit() : 0;
-		if (strequ(str, "pa"))
-			push(&a, &b, 0, 0);
-		else if (strequ(str, "pb"))
-			push(&b, &a, 0, 0);
-		else if (str[0] == 's')
-			swap(a, b, str[1], 0);
-		else
-			rotate(a, b, str, 0);
-		g_v ? print_stacks(a, b, str, ++g_dam) : 0;
+		if (!instruction_check(str))
+		{
+			ft_putendl("Error invalid instruction :(");
+			exit(1);
+		}
+		do_stdin_instructions(a, b, str);
+		if (g_v)
+			print_stacks(a, b, str, ++g_dam);
 		free(str);
 	}
 	!sorted(a, i) ? ft_putendl("KO") : ft_putendl("OK");
@@ -92,7 +97,8 @@ int			main(int ac, char **av)
 
 	if (!(a = load(ac, av)) || ac == 1)
 	{
-		!a ? ft_putendl("Error") : 0;
+		if (!a)
+			ft_putendl("Error");
 		return (0);
 	}
 	b = load(ac, av);
