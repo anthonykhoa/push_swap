@@ -32,6 +32,31 @@ static void	r(t_n *s)
 	*(g_in + g_i++) = g_c ? "ra" : "rb";
 }
 
+static void handle_leftovers(t_n *z, t_n *n, int size)
+{
+    size *= 2;
+    if (n->n == -1)
+    {
+        while (n && size--)
+        {
+            n->n = -2;
+            n = n->next;
+        }
+        while (z && z->n == 0)
+        {
+            z->n = -2;
+            z = z->next;
+        }
+    }
+    else
+        while (z)
+        {
+            if (z->n == 0)
+                z->n = n->n;
+            z = z->next;
+        }
+}
+
 static void	merge_nodes(t_n *s1, t_n *s2, int n)
 {
 	while (s1 && s1->n == n)
@@ -60,19 +85,18 @@ static void	merge_nodes(t_n *s1, t_n *s2, int n)
 		r(s2);
 }
 
-static void	check_all_ifs(t_n *a, t_n *b, int size, int count)
+static void	merge(t_n *a, t_n *b, int max_rank, int size)
 {
-	int	n;
+	int	i;
 
-	if (b->n && !sole_node(b->next, b->n) &&
-			(count > (size * 2) || count < (size * 2)))
+	i = 1;
+	g_c = max_rank & 1 ? 1 : 0;
+	while (max_rank--)
 	{
-		g_c = 0;
-		n = b->n;
-		while (b->n == n)
-			r(b);
+		g_c ? merge_nodes(b, a, i++) : merge_nodes(a, b, i++);
+		g_c = g_c ? 0 : 1;
 	}
-	else if (a->n == 0)
+	if (a->n == 0)
 	{
 		handle_leftovers(a, b, size);
 		g_c = 0;
@@ -84,30 +108,6 @@ static void	check_all_ifs(t_n *a, t_n *b, int size, int count)
 		g_c = 1;
 		merge_nodes(b, a, a->n);
 	}
-}
-
-static void	merge(t_n *a, t_n *b, int max_rank, int size)
-{
-	int	i;
-	int n;
-
-	i = 1;
-	g_c = max_rank & 1 ? 1 : 0;
-	while (max_rank--)
-	{
-		g_c ? merge_nodes(b, a, i++) : merge_nodes(a, b, i++);
-		g_c = g_c ? 0 : 1;
-	}
-	if (a->n && !sole_node(a->next, a->n) &&
-		(node_count(a, a->n) > (size * 2) || node_count(a, a->n) < (size * 2)))
-	{
-		g_c = 1;
-		n = a->n;
-		while (a->n == n)
-			r(a);
-	}
-	else
-		check_all_ifs(a, b, size, node_count(b, b->n));
 }
 
 void		merge_sort(t_n *a, t_n *b, int size)
