@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 13:14:33 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/14 13:14:46 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/15 16:14:18 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include "push_swap.h"
 
-int		new_num(int r, int *tab, int i)
+static int	new_num(int r, int *tab, int i)
 {
 	int	x;
 
@@ -25,7 +25,7 @@ int		new_num(int r, int *tab, int i)
 	return (1);
 }
 
-void	print_nums(int n, int fd)
+static void	print_nums(int n, int fd)
 {
 	int			i;
 	intmax_t	r;
@@ -47,7 +47,7 @@ void	print_nums(int n, int fd)
 	free(tab);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	int	fd;
 
