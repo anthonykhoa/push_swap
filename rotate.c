@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:16:48 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:16:50 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/15 15:28:19 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	ro(t_n *s)
 	int	tmp;
 	int tmp2;
 
+	if (!s || !s->next)
+		return ;
 	tmp = s->v;
 	tmp2 = s->n;
 	while (s->next)
@@ -37,6 +39,8 @@ static void	rr(t_n *s)
 	int	tmp4;
 	t_n	*t;
 
+	if (!s || !s->next)
+		return ;
 	t = s;
 	tmp = s->v;
 	tmp3 = s->n;
