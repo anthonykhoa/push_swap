@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:10:51 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:10:52 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/15 10:42:16 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	r(t_n *s)
 	*(g_in + g_i++) = g_c ? "ra" : "rb";
 }
 
-static void handle_leftovers(t_n *z, t_n *n)
+static void	handle_leftovers(t_n *z, t_n *n)
 {
 	while (z)
 	{
