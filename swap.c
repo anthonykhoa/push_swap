@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:19:01 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:19:02 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/14 18:46:39 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	perform_swap(t_n *s)
 	int v;
 	int n;
 
+	if (!s || !s->next)
+		return ;
 	v = s->v;
 	n = s->n;
 	s->v = s->next->v;

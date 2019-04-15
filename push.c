@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 21:13:28 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/13 21:13:29 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/14 18:45:25 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ static void	regular_push(t_n **stack, int v, int n)
 
 void		push(t_n **stack, t_n **p, int c, int x)
 {
+	if (!*p)
+		return ;
 	if (!*stack)
 		handle_null_stack(stack, (*p)->v, (*p)->n);
 	else
