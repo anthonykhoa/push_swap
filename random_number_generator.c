@@ -6,7 +6,7 @@
 /*   By: anttran <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 13:14:33 by anttran           #+#    #+#             */
-/*   Updated: 2019/04/15 16:14:18 by anttran          ###   ########.fr       */
+/*   Updated: 2019/04/18 13:24:39 by anttran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ int			main(int ac, char **av)
 {
 	int	fd;
 
-	fd = open("nums", O_WRONLY);
+	fd = (ac == 3) ? open("nums", O_WRONLY) : 0;
 	if (ac == 2)
 		print_nums(ft_atoi(av[1]), fd);
-	close(fd);
+	else if (ac == 3)
+		print_nums(ft_atoi(av[2]), fd);
+	if (fd)
+		close(fd);
 }
