@@ -12,6 +12,15 @@
 
 #include "push_swap.h"
 
+static void	sort_2(t_n *a, t_n *b)
+{
+	if (a->v > a->next->v)
+		b && b->v > b->next->v ? swap(a, b, 's', 1) : swap(a, b, 'a', 1);
+	if (b && b->v > b->next->v)
+		swap(a, b, 'b', 1);
+}
+
+
 static void	sort_3(t_n *a)
 {
 	a->n = 1;
@@ -33,20 +42,6 @@ static void	sort_3(t_n *a)
 		swap(a, NULL, 'a', 1);
 }
 
-static void	sort_2(t_n *a, t_n *b)
-{
-	if (a->v > a->next->v)
-		b && b->v > b->next->v ? swap(a, b, 's', 1) : swap(a, b, 'a', 1);
-	if (b && b->v > b->next->v)
-		swap(a, b, 'b', 1);
-}
-
-static void	sort_4(t_n *a, t_n *b)
-{
-	sort_2(a, b);
-	merge_sort(a, b, 2);
-}
-
 static void	small_sort(t_n *a, t_n *b, int i)
 {
 	if (i == 2)
@@ -54,11 +49,15 @@ static void	small_sort(t_n *a, t_n *b, int i)
 	else if (i == 3)
 		sort_3(a);
 	else if (i == 4)
-		sort_4(a, b);
+	{	
+		sort_2(a, b);
+		merge_sort(a, b, 2);
+	}
 	else if (i == 5)
 	{
+		sort_2(a, b);
 		sort_3(a);
-		sort_4(a, b);
+		merge_sort(a, b, 2);
 	}
 }
 
@@ -71,7 +70,7 @@ void		solve(t_n *a, int i)
 	if (((list_size(a) == 1)) || sorted(a, list_size(a)))
 		return ;
 	if (i > 3)
-		while (list_size(a) != list_size(b) || list_size(a) != list_size(b) + 1)
+		while (list_size(a) != list_size(b) && list_size(a) != list_size(b) + 1)
 			push(&b, &a, 0, 1);
 	if (i < 6)
 		small_sort(a, b, i);
