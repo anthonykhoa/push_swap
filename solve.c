@@ -33,27 +33,33 @@ static void	sort_3(t_n *a)
 		swap(a, NULL, 'a', 1);
 }
 
-static void	sort_4(t_n *a, t_n *b)
+static void	sort_2(t_n *a, t_n *b)
 {
 	if (a->v > a->next->v)
-		b->v > b->next->v ? swap(a, b, 's', 1) : swap(a, b, 'a', 1);
-	if (b->v > b->next->v)
+		b && b->v > b->next->v ? swap(a, b, 's', 1) : swap(a, b, 'a', 1);
+	if (b && b->v > b->next->v)
 		swap(a, b, 'b', 1);
+}
+
+static void	sort_4(t_n *a, t_n *b)
+{
+	sort_2(a, b);
 	merge_sort(a, b, 2);
 }
 
-static void	sort_5(t_n *a, t_n *b)
+static void	small_sort(t_n *a, t_n *b, int i)
 {
-	sort_3(a);
-	sort_4(a, b);
-}
-
-static void	grow_b(t_n *a, t_n **b)
-{
-	if (list_size(a) == list_size(*b) || list_size(a) == list_size(*b) + 1)
-		return ;
-	push(b, &a, 0, 1);
-	return (grow_b(a, b));
+	if (i == 2)
+		sort_2(a, b);
+	else if (i == 3)
+		sort_3(a);
+	else if (i == 4)
+		sort_4(a, b);
+	else if (i == 5)
+	{
+		sort_3(a);
+		sort_4(a, b);
+	}
 }
 
 void		solve(t_n *a, int i)
@@ -62,16 +68,13 @@ void		solve(t_n *a, int i)
 
 	b = NULL;
 	g_in = ft_memalloc(sizeof(char*) * i * 400);
-	if (sorted(a, list_size(a)))
+	if (((list_size(a) == 1)) || sorted(a, list_size(a)))
 		return ;
 	if (i > 3)
-		grow_b(a, &b);
-	if (i == 3)
-		sort_3(a);
-	else if (i == 4)
-		sort_4(a, b);
-	else if (i == 5)
-		sort_5(a, b);
+		while (list_size(a) != list_size(b) || list_size(a) != list_size(b) + 1)
+			push(&b, &a, 0, 1);
+	if (i < 6)
+		small_sort(a, b, i);
 	else
 	{
 		if (list_size(a) > 10 && (list_size(a) == list_size(b)))

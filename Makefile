@@ -19,7 +19,7 @@ rn:
 	rm nums
 	touch nums
 	gcc -o rn random_number_generator.c $(LIB)
-	./rn 500
+	./rn o 500
 	open nums
 	rm rn
 
@@ -27,7 +27,7 @@ rn:
 	rm nums
 	touch nums
 	gcc -o rn random_number_generator.c $(LIB)
-	./rn 100
+	./rn o 100
 	open nums
 	rm rn
 
@@ -35,7 +35,7 @@ rn:
 	rm nums
 	touch nums
 	gcc -o rn random_number_generator.c $(LIB)
-	./rn 5
+	./rn o 5
 	open nums
 	rm rn
 
@@ -43,7 +43,7 @@ rn:
 	rm nums
 	touch nums
 	gcc -o rn random_number_generator.c $(LIB)
-	./rn 3
+	./rn o 3
 	open nums
 	rm rn
 

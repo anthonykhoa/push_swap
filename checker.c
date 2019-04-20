@@ -95,10 +95,11 @@ int			main(int ac, char **av)
 	int		i;
 	char	**in;
 
-	if (!(a = load(ac, av)) || ac == 1)
+	if (ac == 1)
+		return (0);
+	if (!(a = load(ac, av)))
 	{
-		if (!a)
-			ft_putendl("Error");
+		ft_putendl("Error");
 		return (0);
 	}
 	b = load(ac, av);

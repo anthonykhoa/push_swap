@@ -71,18 +71,18 @@ static int	number_check(int ac, char **av)
 	return (1);
 }
 
-int			check_options(char **av)
+int			check_options(int ac, char **av)
 {
 	int	i;
 
 	i = 0;
 	if (strequ(av[1], "plz") || strequ(av[1], "-v"))
 		i++;
-	if (strequ(av[2], "plz") || strequ(av[2], "-v"))
+	if (ac > 2 && (strequ(av[2], "plz") || strequ(av[2], "-v")))
 		i++;
-	if (strequ(av[1], "plz") || strequ(av[2], "plz"))
+	if (strequ(av[1], "plz") || (ac > 2 && strequ(av[2], "plz")))
 		g_plz++;
-	if (strequ(av[1], "-v") || strequ(av[2], "-v"))
+	if (strequ(av[1], "-v") || (ac > 2 && strequ(av[2], "-v")))
 		g_v++;
 	return (i);
 }
@@ -92,7 +92,7 @@ t_n			*load(int ac, char **av)
 	t_n	*a;
 	t_n	*head;
 
-	g_check_ops = check_options(av);
+	g_check_ops = check_options(ac, av);
 	while (g_check_ops--)
 	{
 		ac--;
