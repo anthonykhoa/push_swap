@@ -12,16 +12,7 @@
 
 #include "push_swap.h"
 
-static void	sort_2(t_n *a, t_n *b)
-{
-	if (a->v > a->next->v)
-		b && b->v > b->next->v ? swap(a, b, 's', 1) : swap(a, b, 'a', 1);
-	if (b && b->v > b->next->v)
-		swap(a, b, 'b', 1);
-}
-
-
-static void	sort_3(t_n *a)
+static void	sort_3(t_n *a, t_n *b, int i)
 {
 	a->n = 1;
 	a->next->n = 1;
@@ -30,33 +21,39 @@ static void	sort_3(t_n *a)
 	{
 		rotate(a, NULL, "ra", 1);
 		if (a->v > a->next->v)
-			swap(a, NULL, 'a', 1);
+			(i > 3) && (b->v > b->next->v) ?
+			swap(a, b, 's', 1) : swap(a, NULL, 'a', 1);
 	}
 	else if (a->next->v == largest_node_element(a, 1))
 	{
 		if (a->v < a->next->next->v)
-			swap(a, NULL, 'a', 1);
+			(i > 3) && (b->v > b->next->v) ?
+			swap(a, b, 's', 1) : swap(a, NULL, 'a', 1);
 		rotate(a, NULL, "ra", 1);
 	}
 	else if (a->v > a->next->v)
-		swap(a, NULL, 'a', 1);
+		(i > 3) && (b->v > b->next->v) ?
+		swap(a, b, 's', 1) : swap(a, NULL, 'a', 1);
+
 }
 
 static void	small_sort(t_n *a, t_n *b, int i)
 {
-	if (i == 2)
-		sort_2(a, b);
+	if (i == 2 && (a->v > a->next->v))
+		swap(a, b, 'a', 1);
 	else if (i == 3)
-		sort_3(a);
+		sort_3(a, b, i);
 	else if (i == 4)
 	{	
-		sort_2(a, b);
+		if (a->v > a->next->v)
+			b && b->v > b->next->v ? swap(a, b, 's', 1) : swap(a, b, 'a', 1);
+		if (b && b->v > b->next->v)
+			swap(a, b, 'b', 1);
 		merge_sort(a, b, 2);
 	}
 	else if (i == 5)
 	{
-		sort_2(a, b);
-		sort_3(a);
+		sort_3(a, b, i);
 		merge_sort(a, b, 2);
 	}
 }
