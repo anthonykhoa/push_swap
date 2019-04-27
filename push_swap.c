@@ -22,6 +22,11 @@ int	main(int ac, char **av)
 	i = 0;
 	if (ac == 1)
 		return (0);
+	if (ac == 2)
+	{
+		av = stupid_string(ft_strsplit(av[1], ' '));
+		ac = str_size(av);
+	}
 	if (!(a = load(ac, av)))
 	{
 		ft_putendl("Error");

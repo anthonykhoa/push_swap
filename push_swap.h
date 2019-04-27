@@ -32,6 +32,8 @@ void			swap(t_n *a, t_n *b, char c, int x);
 void			rotate(t_n *a, t_n *b, char *in, int x);
 int				list_size(t_n *s);
 int				sorted(t_n *s, int i);
+int             str_size(char **str);
+char            **stupid_string(char **str);
 char			**cut_down(void);
 int				has_node(t_n *s, int n);
 int				last_value(t_n *s);

@@ -97,6 +97,9 @@ int			main(int ac, char **av)
 
 	if (ac == 1)
 		return (0);
+    i = ac;
+    av = (i == 2) ? stupid_string(ft_strsplit(av[1], ' ')) : av;
+    ac = (i == 2) ? str_size(av) : ac;
 	if (!(a = load(ac, av)))
 	{
 		ft_putendl("Error");
@@ -111,6 +114,5 @@ int			main(int ac, char **av)
 		do_instructions(b, in);
 		!sorted(b, i) ? ft_putendl("KO") : ft_putendl("OK");
 	}
-	else
-		stdin_instructions(a, i);
+    !g_plz ? stdin_instructions(a, i) : 0;
 }

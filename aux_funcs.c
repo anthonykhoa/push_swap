@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int		list_size(t_n *s)
+int	list_size(t_n *s)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ int		list_size(t_n *s)
 	return (i);
 }
 
-int		sorted(t_n *s, int i)
+int	sorted(t_n *s, int i)
 {
 	if (list_size(s) != i)
 		return (0);
@@ -36,4 +36,27 @@ int		sorted(t_n *s, int i)
 		s = s->next;
 	}
 	return (1);
+}
+
+int	str_size(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	**stupid_string(char **str)
+{
+	char	**f;
+	int	i;
+	
+	f = ft_memalloc(sizeof(char*) * (str_size(str) + 2));
+	i = 0;
+	f[i++] = "oehuoehuheuheuheu";
+	while (*str)
+		f[i++] = *str++;
+	return (f);
 }
