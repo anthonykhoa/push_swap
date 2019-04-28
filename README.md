@@ -15,9 +15,10 @@ EXTRA OPTIONS:
 -I've provided a random number generator with 4 list sizes: 500, 100, 5, and 3. Type in make followed by the number
  you want, and a file named nums will automatically open up with your random list of numbers. 
   Ex: make 500
- -If you want to pick your own list size, enter the command "make rn" and then enter ./rn <#>
+-If you want to pick your own list size, enter the command "make rn" and then enter to print to the terminal ./rn <#>
   Ex: ./rn 333
-
+If you want the print your chosen list size to the nums file instead, type in anything as a first argument before the number.
+ Ex: ./rn bigpotato 987
 The project gives you only two stacks to work with, stacks A and B.
 Stack A will be filled with a list of integers. The goal of the project is to sort the integers in stack A into ascending
 order, using only a limited instruction set and stacks A and B. Furthermore.. the project calls them stacks, but they are
