@@ -56,7 +56,11 @@ char	**stupid_string(char **str)
 	f = ft_memalloc(sizeof(char*) * (str_size(str) + 2));
 	i = 0;
 	f[i++] = "oehuoehuheuheuheu";
-	while (*str)
-		f[i++] = *str++;
+	while (str[i - 1])
+	{
+		f[i] = str[i - 1];
+		i++;
+	}
+	free(str);
 	return (f);
 }
