@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	print_stack_a(t_n *a)
+static void	print_stack_a(t_n *a)
 {
 	ft_printf("{RE}Stack A				{GR}Stack B\n");
 	ft_printf("-------				-------\n");
@@ -24,7 +24,7 @@ void	print_stack_a(t_n *a)
 	ft_printf("\n");
 }
 
-void	print_stacks(t_n *a, t_n *b, char *in, int i)
+void		print_stacks(t_n *a, t_n *b, char *in, int i)
 {
 	if (!in)
 	{
