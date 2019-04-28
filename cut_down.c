@@ -12,16 +12,6 @@
 
 #include "push_swap.h"
 
-static int	str_size(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
 static void	set_instructions(char **cut, int j, int ca, int cb)
 {
 	if (ca < cb && ca && cb)
