@@ -67,17 +67,13 @@ static void	add_instructions(char *in)
 	else if (in[1] == 'b')
 		*(g_in + g_i++) = "rb";
 	else if (!in[2])
-	{
 		*(g_in + g_i++) = "rr";
-	}
 	else if (in[2] == 'a')
 		*(g_in + g_i++) = "rra";
 	else if (in[2] == 'b')
 		*(g_in + g_i++) = "rrb";
 	else
-	{
 		*(g_in + g_i++) = "rrr";
-	}
 }
 
 void		rotate(t_n *a, t_n *b, char *in, int x)
