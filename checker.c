@@ -53,9 +53,9 @@ static void	do_stdin_instructions(t_n *a, t_n *b, char *str)
 static int	instruction_check(char *in)
 {
 	if (!strequ(in, "sa") && !strequ(in, "sb") && !strequ(in, "ss")
-		&& !strequ(in, "ra") && !strequ(in, "rb") && !strequ(in, "rr")
-		&& !strequ(in, "rra") && !strequ(in, "rrb") && !strequ(in, "rrr")
-		&& !strequ(in, "pa") && !strequ(in, "pb"))
+			&& !strequ(in, "ra") && !strequ(in, "rb") && !strequ(in, "rr")
+			&& !strequ(in, "rra") && !strequ(in, "rrb") && !strequ(in, "rrr")
+			&& !strequ(in, "pa") && !strequ(in, "pb"))
 		return (0);
 	return (1);
 }
@@ -97,9 +97,9 @@ int			main(int ac, char **av)
 
 	if (ac == 1)
 		return (0);
-    i = ac;
-    av = (i == 2) ? stupid_string(ft_strsplit(av[1], ' ')) : av;
-    ac = (i == 2) ? str_size(av) : ac;
+	i = ac;
+	av = (i == 2) ? stupid_string(ft_strsplit(av[1], ' ')) : av;
+	ac = (i == 2) ? str_size(av) : ac;
 	if (!(a = load(ac, av)))
 	{
 		ft_putendl("Error");
@@ -114,5 +114,5 @@ int			main(int ac, char **av)
 		do_instructions(b, in);
 		!sorted(b, i) ? ft_putendl("KO") : ft_putendl("OK");
 	}
-    !g_plz ? stdin_instructions(a, i) : 0;
+	!g_plz ? stdin_instructions(a, i) : 0;
 }
